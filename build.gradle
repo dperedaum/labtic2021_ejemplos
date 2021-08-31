@@ -18,6 +18,12 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'com.h2database:h2'
