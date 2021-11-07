@@ -13,10 +13,10 @@ public class ClientMgr {
     @Autowired
     private ClientRepository clientRepository;
 
-    public void addClient(long document, String name, String address)
+    public void addClient(Client client)
             throws InvalidClientInformation, ClientAlreadyExists {
 
-        if (name == null || "".equals(name) || address == null || "".equals(address)) {
+        if (client.getName() == null || "".equals(client.getName()) || client.getAddress() == null || "".equals(client.getAddress())) {
 
             throw new InvalidClientInformation("Alguno de los datos ingresados no es correcto");
 
@@ -24,14 +24,12 @@ public class ClientMgr {
 
         // Verifico si el cliente no existe
 
-        if (clientRepository.findOneByDocument(document) != null) {
+        if (clientRepository.findOneByDocument(client.getDocument()) != null) {
 
             throw new ClientAlreadyExists();
         }
 
-        Client oClient = new Client(document, name, address);
-
-        clientRepository.save(oClient);
+        clientRepository.save(client);
 
     }
 

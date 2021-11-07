@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import um.edu.uy.business.ClientMgr;
+import um.edu.uy.business.entities.Client;
 import um.edu.uy.business.exceptions.ClientAlreadyExists;
 import um.edu.uy.business.exceptions.InvalidClientInformation;
 import org.springframework.stereotype.Component;
@@ -62,7 +63,9 @@ public class ClientController {
 
                 try {
 
-                    clientMgr.addClient(document, name, address);
+                    Client client = new Client(document, name, address);
+
+                    clientMgr.addClient(client);
 
                     showAlert("Cliente agregado", "Se agrego con exito el cliente!");
 
